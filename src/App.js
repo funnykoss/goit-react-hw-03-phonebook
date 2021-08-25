@@ -15,6 +15,12 @@ export default class App extends Component {
     ],
     filter: '',
   };
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }
+  }
+
   addContact = newContact => {
     const contactCheck = this.state.contacts.find(
       ({ name }) => name === newContact.name,
